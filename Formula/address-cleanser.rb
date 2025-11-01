@@ -6,7 +6,7 @@ class AddressCleanser < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/joshuboi77/address-cleanser/releases/download/v1.0.15/address-cleanser-macos-arm64.zip"
-      sha256 "ab46d6ade8a56c130d4a07f37a8934c1437f9c12e089a8cac8a9d838aab5c733"
+      sha256 "8bd0261decebec7d36ffdf8fd712d706921be36203f20a9fbcb19b4998a7d860"
     else
       url "https://github.com/joshuboi77/address-cleanser/releases/download/v1.0.15/address-cleanser-macos-universal.zip"
       sha256 "31d22922098f2a0662e14784ac44b569be8e7f48efcd0690fd72c1eca16557ee"
