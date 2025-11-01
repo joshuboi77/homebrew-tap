@@ -14,12 +14,7 @@ class AddressCleanser < Formula
   end
 
   def install
-    # For ARM Macs
-    if Hardware::CPU.arm?
-      bin.install "address-cleanser-darwin-arm64" => "address-cleanser"
-    else
-      bin.install "address-cleanser-darwin-universal" => "address-cleanser"
-    end
+    bin.install "address-cleanser"
   end
 
   test do
