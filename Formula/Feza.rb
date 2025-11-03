@@ -1,7 +1,7 @@
 class Feza < Formula
   desc "None"
   homepage "None"
-  version "0.5.7"
+  version "0.5.8"
 
 
   # Python package - install via pip so wrapper script can import it
@@ -10,17 +10,17 @@ class Feza < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.7/feza-darwin-arm64.tar.gz"
-      sha256 "31feb9e970dc15513c647b773dafe5a774da1d2ebfceddd84e2f103060d30496"
+      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.8/feza-darwin-arm64.tar.gz"
+      sha256 "4a948ad802164e252bb7f0fb27b9d86ef1e7134406c6d822e0f3949b3e4bc6c8"
     else
-      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.7/feza-darwin-amd64.tar.gz"
-      sha256 "d8445d592b6e4a70b2b106a137ae9449b58c1e854063805dcc2cf0109e83c3e4"
+      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.8/feza-darwin-amd64.tar.gz"
+      sha256 "e508254825fdf54e5677e438b316725e516687d1c06af55af28dcffe6cf56269"
     end
   end
 
   on_linux do
-    url "https://github.com/joshuboi77/Feza/releases/download/v0.5.7/feza-linux-amd64.tar.gz"
-    sha256 "91a6314b61f001f92a481c6d5555a6c2ad247ae6b8f21a44d1d36c812e779da1"
+    url "https://github.com/joshuboi77/Feza/releases/download/v0.5.8/feza-linux-amd64.tar.gz"
+    sha256 "4b2bb30d711baa8eb51f68bde88c6b62d2d636d65a43df0869a4fb6f6260691f"
   end
 
   def install
@@ -42,7 +42,7 @@ class Feza < Formula
       package_dir = "feza"
       if Dir.exist?(package_dir)
         # Create a minimal setup.py if needed
-        File.write("setup.py", "from setuptools import setup; setup(name='feza', version='0.5.7')")
+        File.write("setup.py", "from setuptools import setup; setup(name='feza', version='0.5.8')")
         system python3, "-m", "pip", "install", "--prefix", prefix, "--no-build-isolation", "."
       end
     end
@@ -50,6 +50,6 @@ class Feza < Formula
   end
 
   test do
-    assert_match "0.5.7", shell_output("#{bin}/feza --version")
+    assert_match "0.5.8", shell_output("#{bin}/feza --version")
   end
 end
