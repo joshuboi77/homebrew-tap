@@ -1,21 +1,21 @@
 class Feza < Formula
-  desc "CLI tool"
-  homepage "https://github.com/joshuboi77/Feza"
-  version "0.5.1"
+  desc "None"
+  homepage "None"
+  version "0.5.2"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.1/feza-darwin-arm64.tar.gz"
-      sha256 "678576474eb8a29b5077d096f2b5a1c2b5a0036cd377f953af300d44e0955e1a"
+      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.2/feza-darwin-arm64.tar.gz"
+      sha256 "53ea67eab2d040d16be75aa30e59c90fbc0e752637f8da27723f19efdbda6154"
     else
-      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.1/feza-darwin-amd64.tar.gz"
-      sha256 "f07d936c6d71892590b852baac314a18be7fecbb34e64c3893a56344115954c9"
+      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.2/feza-darwin-amd64.tar.gz"
+      sha256 "8a76c045553d9e3998f7311e924717683fbf067d33b0b7e61cc62086d84ea142"
     end
   end
 
   on_linux do
-    url "https://github.com/joshuboi77/Feza/releases/download/v0.5.1/feza-linux-amd64.tar.gz"
-    sha256 "e749c07eac6b7531494397f0ede0952614a9740050bd9d294919d7372af6ebe1"
+    url "https://github.com/joshuboi77/Feza/releases/download/v0.5.2/feza-linux-amd64.tar.gz"
+    sha256 "16322f5bd63dd9185840eb3cd472cb6187035b3f2429f43559367e7349d312b2"
   end
 
   def install
@@ -23,6 +23,6 @@ class Feza < Formula
   end
 
   test do
-    assert_match "0.5.1", shell_output("#{bin}/feza --version")
+    assert_match "0.5.2", shell_output("#{bin}/feza --version")
   end
 end
