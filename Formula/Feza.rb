@@ -1,7 +1,7 @@
 class Feza < Formula
   desc "None"
   homepage "None"
-  version "0.5.5"
+  version "0.5.6"
 
 
   # Python package - install via pip so wrapper script can import it
@@ -10,17 +10,17 @@ class Feza < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.5/feza-darwin-arm64.tar.gz"
-      sha256 "cca51454f0b6991724b03a327495a799e91b03915f1f5f45f95c89c58b29f8cb"
+      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.6/feza-darwin-arm64.tar.gz"
+      sha256 "ae70f1df570751062de1f0abe5ef2dbe87ed900159cc21ce68d4e3b012eb4da4"
     else
-      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.5/feza-darwin-amd64.tar.gz"
-      sha256 "a3bd758a6059464ef99adfbc39f91ef00ff479a713afbf2e16deeb6b7fb7e2ee"
+      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.6/feza-darwin-amd64.tar.gz"
+      sha256 "9243fc1d05c8dd5ab3254c3b13fc896b9326f6e3a62732b41623beb85887a809"
     end
   end
 
   on_linux do
-    url "https://github.com/joshuboi77/Feza/releases/download/v0.5.5/feza-linux-amd64.tar.gz"
-    sha256 "517e3071ffbb8342e4f9cba877336057fadfd6fe238879c8dee67cb917f46fe8"
+    url "https://github.com/joshuboi77/Feza/releases/download/v0.5.6/feza-linux-amd64.tar.gz"
+    sha256 "b8b3f9c4fad9595b676b72bafd070dc4bad0b3710ea8340a008bd1f006d13d08"
   end
 
   def install
@@ -28,12 +28,27 @@ class Feza < Formula
 
     # Install Python package so wrapper script can import it
     # The wrapper script does "from feza.main import main" so package must be installed
+    # Package source is included in the tarball, install from extracted source
     python3 = "python3.11"
-    system python3, "-m", "pip", "install", "--prefix", prefix, "feza==0.5.5"
+    if File.exist?("pyproject.toml")
+      # Install from pyproject.toml in the extracted tarball
+      system python3, "-m", "pip", "install", "--prefix", prefix, "--no-build-isolation", "."
+    elsif File.exist?("setup.py")
+      # Fallback for setup.py
+      system python3, "-m", "pip", "install", "--prefix", prefix, "--no-build-isolation", "."
+    else
+      # Try installing package name from bundled source
+      package_dir = "feza"
+      if Dir.exist?(package_dir)
+        # Create a minimal setup.py if needed
+        File.write("setup.py", "from setuptools import setup; setup(name='feza', version='0.5.6')")
+        system python3, "-m", "pip", "install", "--prefix", prefix, "--no-build-isolation", "."
+      end
+    end
 
   end
 
   test do
-    assert_match "0.5.5", shell_output("#{bin}/feza --version")
+    assert_match "0.5.6", shell_output("#{bin}/feza --version")
   end
 end
