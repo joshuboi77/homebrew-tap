@@ -1,7 +1,7 @@
 class Feza < Formula
   desc "None"
   homepage "None"
-  version "0.5.12"
+  version "0.5.13"
 
 
   # Python package - install via pip so wrapper script can import it
@@ -10,17 +10,17 @@ class Feza < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.12/feza-darwin-arm64.tar.gz"
-      sha256 "a9868d48b03a94b629baa576c3ff4fab53fa1b8f0ccfaf7692ad8bfdf263bc60"
+      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.13/feza-darwin-arm64.tar.gz"
+      sha256 "211c848f66c11ae6bbf5bef6646c3fb593048cbde3f5baa7038627903de6f7e8"
     else
-      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.12/feza-darwin-amd64.tar.gz"
-      sha256 "a184f08160e877faa9d2647722daab0ef5365e7e43da50079b1a63f5f4ca26d7"
+      url "https://github.com/joshuboi77/Feza/releases/download/v0.5.13/feza-darwin-amd64.tar.gz"
+      sha256 "b2fb1fc0664ea3def8eeec360458ad98b87fc0abae67ebdd1472f3411a33438f"
     end
   end
 
   on_linux do
-    url "https://github.com/joshuboi77/Feza/releases/download/v0.5.12/feza-linux-amd64.tar.gz"
-    sha256 "ae5d84b58c418b0e3213c21e1df84488418c99e39b33149a0cd376903ba402dc"
+    url "https://github.com/joshuboi77/Feza/releases/download/v0.5.13/feza-linux-amd64.tar.gz"
+    sha256 "666091edf4531c34345802822fbf80654dc6cb20bf23de01327d4ab637334f1c"
   end
 
   def install
@@ -42,7 +42,7 @@ class Feza < Formula
       package_dir = "feza"
       if Dir.exist?(package_dir)
         # Create a minimal setup.py if needed
-        File.write("setup.py", "from setuptools import setup; setup(name='feza', version='0.5.12')")
+        File.write("setup.py", "from setuptools import setup; setup(name='feza', version='0.5.13')")
         system python3, "-m", "pip", "install", "--prefix", prefix, "--no-build-isolation", "."
       end
     end
@@ -50,6 +50,6 @@ class Feza < Formula
   end
 
   test do
-    assert_match "0.5.12", shell_output("#{bin}/feza --version")
+    assert_match "0.5.13", shell_output("#{bin}/feza --version")
   end
 end
